@@ -1,0 +1,11 @@
+#!/bin/bash
+tmux has-session -t cpi
+if [ $? != 0 ]; then
+	tmux new-session -d -s cpi -n nvim
+	tmux send-keys -t cpi:nvim 'nvim .' C-m
+	tmux new-window -t cpi -n debug
+	tmux send-keys -t cpi:debug 'cd build/debug/' C-m
+	tmux new-window -t cpi -n git
+	tmux select-window -t cpi:
+fi
+tmux attach-session -t cpi
