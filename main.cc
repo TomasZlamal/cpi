@@ -8,7 +8,9 @@ int main(int argc, char **argv) {
     return 1;
   }
   std::map<std::string, cpi::ToolChoice> m{
-      {"setup", cpi::ToolChoice::SETUP}, {"initcpi", cpi::ToolChoice::INITCPI}};
+      {"setup", cpi::ToolChoice::SETUP},
+      {"initcpi", cpi::ToolChoice::INITCPI},
+      {"cclass", cpi::ToolChoice::CCLASS}};
   std::string user_choice = argv[1];
   auto choice = cpi::ToolChoice::NONE;
   if (auto search = m.find(user_choice); search != m.end()) {
@@ -21,9 +23,22 @@ int main(int argc, char **argv) {
   case cpi::ToolChoice::INITCPI: {
     cpi::init_cpi();
   } break;
+  case cpi::ToolChoice::CCLASS: {
+
+    if (argc < 3) {
+      std::cout << rang::fg::red << "'cclass' needs atleast 1 argument.\n";
+      return 1;
+    }
+
+    std::cout << rang::fg::green << "run 'cclass'";
+  } break;
   case cpi::ToolChoice::NONE:
 
   default:
     std::cout << rang::fg::red << "Option not found.\n";
+
+    return 1;
   }
+
+  return 0;
 }
