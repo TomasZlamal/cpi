@@ -16,9 +16,9 @@ Initializes all cpi config files.
 This is a set of tools that creates a header file and a implementation file, with some extra padding.
 It will put the impl and header file inside of whatever your set directories are (aswell as prefer extensions), inside of `cpi.toml`.
 The same applies to namespaces. Add "-nw" to ignore the default whitespace (TODO).
-### cclass - Create Class (in progress)
+### cclass - Create Class (working)
 `cpi cclass CLASSNAME`
-
+Creates an empty class, seperated into an implementation and header file.
 ## Cpi directory - cpi/ 
 Recommend to put this inside of .gitignore.
 

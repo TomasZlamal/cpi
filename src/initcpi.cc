@@ -5,7 +5,9 @@ void init_cpi() {
   std::filesystem::create_directory("cpi");
   std::ofstream cpi_toml("cpi/cpi.toml");
 
-  cpi_toml << "\n\n[Implementator]\nimpl = \"\"\nheader = \"\"\n" << std::endl;
+  cpi_toml << "\n\n[Implementator]\nimpl = \"\"\nheader = \"\"\nimpl_extension "
+              "= \".cc\"\nheader_extension = \".h\"\nnamespace = \"\""
+           << std::endl;
 
   cpi_toml.close();
   std::ofstream gitignore;

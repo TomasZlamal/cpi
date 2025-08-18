@@ -1,3 +1,3 @@
-- [ ] Inner function: "toml_extract_keys_from_section": vector<std::string> keys, std::string section -> std::map<keys: string, values: string>
-- [ ] Outer tool: "cclass CLASSNAME": create an empty class with impl file in toml.impl and header in toml.header, with an optional namespace toml.namespace
+- [x] Outer tool: "cclass CLASSNAME": create an empty class with impl file in toml.impl and header in toml.header, with an optional namespace toml.namespace
+- [ ] Outer tool: "split FILENAME": creates two files, an implementation file and a header file, according to the .toml rules and the given filename.
 - [ ] Outer tool: "todos": Lists out all TODO: statements, with all of the file locations, lines and contents.
