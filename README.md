@@ -5,12 +5,14 @@ C++ always seems to be behind in terms of tools and setup. Rust has a great tool
 
 That's what this collection of tools tries to fix. It promises to be a CLI powerhouse for your C++ projects.
 ## Tools
-### init (working)
-`cpi init`
+### setup (working)
+`cpi setup`
 Creates an initialization UI for the user. This allows you to quickly setup a project with tools like Vcpkg.
 
 ### initcpi (working)
+`cpi initcpi`
 Initializes all cpi config files.
+It is heavily recommended to run this when setting up cpi in your project.
 
 #### Tool group - Implementator (in progress)
 This is a set of tools that creates a header file and a implementation file, with some extra padding.
