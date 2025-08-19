@@ -14,13 +14,24 @@ Creates an initialization UI for the user. This allows you to quickly setup a pr
 Initializes all cpi config files.
 It is heavily recommended to run this when setting up cpi in your project.
 
-#### Tool group - Implementator (in progress)
+### loc (in progress)
+`cpi loc`
+Get the Lines of Code count for your project (based on impl and header dir values in cpi.toml).
+
+### hw (in progress)
+`cpi hw`
+Creates a main.cc (depends on .toml config) file with a hello world output in your current directory.
+
+### Tool group - Implementator (in progress)
 This is a set of tools that creates a header file and a implementation file, with some extra padding.
 It will put the impl and header file inside of whatever your set directories are (aswell as prefer extensions), inside of `cpi.toml`.
 The same applies to namespaces. Add "-nw" to ignore the default whitespace (TODO).
-### cclass - Create Class (working)
+#### cclass - Create Class (working)
 `cpi cclass CLASSNAME`
 Creates an empty class, seperated into an implementation and header file.
+#### csplit - split up FILENAME (in progress)
+`cpi csplit FILENAME` 
+split up FILENAME into a header and impl file
 ## Cpi directory - cpi/ 
 Recommend to put this inside of .gitignore.
 
