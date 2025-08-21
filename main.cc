@@ -1,6 +1,8 @@
 #include "src/cclass.h"
+#include "src/csplit.h"
 #include "src/initcpi.h"
 #include "src/setup.h"
+#include "src/util.h"
 
 int main(int argc, char **argv) {
   if (argc < 2) {
@@ -10,7 +12,8 @@ int main(int argc, char **argv) {
   std::map<std::string, cpi::ToolChoice> m{
       {"setup", cpi::ToolChoice::SETUP},
       {"initcpi", cpi::ToolChoice::INITCPI},
-      {"cclass", cpi::ToolChoice::CCLASS}};
+      {"cclass", cpi::ToolChoice::CCLASS},
+      {"csplit", cpi::ToolChoice::CSPLIT}};
   std::string user_choice = argv[1];
   auto choice = cpi::ToolChoice::NONE;
   if (auto search = m.find(user_choice); search != m.end()) {
@@ -22,6 +25,34 @@ int main(int argc, char **argv) {
   } break;
   case cpi::ToolChoice::INITCPI: {
     cpi::init_cpi();
+  } break;
+  case cpi::ToolChoice::CSPLIT: {
+    if (argc < 3) {
+      std::cout << RANG_EXPR(rang::fg::red)
+                << "'csplit' needs atleast 1 argument.\n";
+      return 1;
+    }
+
+    using namespace std::literals;
+    try {
+      auto config = toml::parse_file("cpi/cpi.toml");
+      int ccfailed = cpi::csplit(argv[2], config);
+      if (ccfailed) {
+        std::cout << RANG_EXPR(rang::fg::red) << "'csplit' failed.\n";
+        return 1;
+      }
+
+      std::cout << RANG_EXPR(rang::fg::green)
+                << "'csplit' executed succesfully\n"
+                << RANG_EXPR(rang::fg::reset);
+
+    } catch (const toml::parse_error &err) {
+
+      std::cout << RANG_EXPR(rang::fg::red)
+                << "Something went wrong with reading your cpi.toml file.\n";
+      return 1;
+    }
+
   } break;
   case cpi::ToolChoice::CCLASS: {
 

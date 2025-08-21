@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(cpi VERSION 0.1)
 
-add_executable(cpi main.cc src/setup.cc src/initcpi.cc src/cclass.cc src/cpi_toml.cc)
+add_executable(cpi main.cc src/setup.cc src/initcpi.cc src/cclass.cc src/cpi_toml.cc src/csplit.cc)
 
 option(BUILD_WITH_RANG "Build with Rang" ON)
 if (BUILD_WITH_RANG)

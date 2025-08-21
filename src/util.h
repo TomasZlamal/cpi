@@ -10,5 +10,5 @@
 #endif
 
 namespace cpi {
-enum class ToolChoice { NONE, SETUP, INITCPI, CCLASS };
+enum class ToolChoice { NONE, SETUP, INITCPI, CCLASS, CSPLIT };
 }

@@ -7,7 +7,6 @@
 #include <string>
 
 namespace cpi {
-namespace cc {}
 
-int cclass(std::string_view class_name, const toml::table &config);
+int csplit(std::string_view file_name, const toml::table &config);
 } // namespace cpi
