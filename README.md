@@ -4,6 +4,23 @@
 C++ always seems to be behind in terms of tools and setup. Rust has a great toolset ecosystem, and so does Java. Most other languages do aswell. But C++ doesn't really have one. The only thing that comes to mind is clang's toolchain. There's obviously Visual Studio, but that forces you to use an IDE, and isn't dependent only on your terminal.
 
 That's what this collection of tools tries to fix. It promises to be a CLI powerhouse for your C++ projects.
+## Building & setup
+Here's how to build this library & use cpi:
+```bash
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+This should generate a `cpi` executable.
+Put this inside of your PATH.
+### Build options
+#### -DBUILD_WITH_RANG
+Use this option to specify whether you want to use colored output using the Rang library:
+```bash
+cmake .. -DBUILD_WITH_RANG=OFF
+```
+This disables colored output. The default is ON.
 ## Tools
 ### setup (working)
 `cpi setup`

@@ -1,3 +1,5 @@
 - [x] Outer tool: "cclass CLASSNAME": create an empty class with impl file in toml.impl and header in toml.header, with an optional namespace toml.namespace
-- [ ] Outer tool: "split FILENAME": creates two files, an implementation file and a header file, according to the .toml rules and the given filename.
-- [ ] Outer tool: "todos": Lists out all TODO: statements, with all of the file locations, lines and contents.
+- [ ] tool: "split FILENAME": creates two files, an implementation file and a header file, according to the .toml rules and the given filename.
+- [ ] tool: "loc": list all lines of code in impl_dir, header_dir and root ("/")
+- [ ] tool: "hw": creates a hello world file in the current directory. Extension according to cpi.toml
+- [ ] tool: "todos": Lists out all TODO: statements, with all of the file locations, lines and contents.

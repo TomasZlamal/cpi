@@ -3,16 +3,16 @@
 namespace cpi {
 namespace setup {
 void get_project_name(SetupState &state) {
-  std::cout << rang::style::bold << "Project name?" << rang::style::reset
-            << "\n> ";
+  std::cout << RANG_EXPR(rang::style::bold) << "Project name?"
+            << RANG_EXPR(rang::style::reset) << "\n> ";
   std::getline(std::cin, state.project_name);
   std::cout << "\n";
 }
 
 void get_package_manager(SetupState &state) {
-  std::cout << rang::style::bold
+  std::cout << RANG_EXPR(rang::style::bold)
             << "Which package manager do you want to use?\n"
-            << rang::style::reset << "[0] None (default)\n"
+            << RANG_EXPR(rang::style::reset) << "[0] None (default)\n"
             << "[1] Vcpkg\n> ";
   std::string temp;
 
@@ -27,8 +27,10 @@ void get_package_manager(SetupState &state) {
   std::cout << "\n";
 }
 void get_project_type(SetupState &state) {
-  std::cout << rang::style::bold << "What is the output of your project?\n"
-            << rang::style::reset << "[0] Executable program (default)\n"
+  std::cout << RANG_EXPR(rang::style::bold)
+            << "What is the output of your project?\n"
+            << RANG_EXPR(rang::style::reset)
+            << "[0] Executable program (default)\n"
             << "[1] Library\n> ";
   std::string temp;
 
@@ -45,8 +47,9 @@ void get_project_type(SetupState &state) {
 }
 void get_build_system(SetupState &state) {
 
-  std::cout << rang::style::bold << "Which build system do you want to use?\n"
-            << rang::style::reset << "[0] CMake (default)\n"
+  std::cout << RANG_EXPR(rang::style::bold)
+            << "Which build system do you want to use?\n"
+            << RANG_EXPR(rang::style::reset) << "[0] CMake (default)\n"
             << "[1] None\n> ";
   std::string temp;
 
@@ -93,9 +96,9 @@ void handle_package_manager(const SetupState &state) {
 })";
     std::string vcpkg_dir = "";
 
-    std::cout << rang::style::bold
+    std::cout << RANG_EXPR(rang::style::bold)
               << "In which directory is your vcpkg installation?\n> "
-              << rang::style::reset;
+              << RANG_EXPR(rang::style::reset);
 
     std::getline(std::cin, vcpkg_dir);
     std::cout << "\n";
@@ -168,10 +171,10 @@ void setup_cpp_project() {
 
   generate_readme(state);
 
-  std::cout << rang::style::bold << rang::fg::green
+  std::cout << RANG_EXPR(rang::style::bold) << RANG_EXPR(rang::fg::green)
             << "\nDone generating project " << state.project_name << "."
-            << "\nRead the " << rang::fg::blue << "README.md" << rang::fg::green
-            << " file for further instructions.";
+            << "\nRead the " << RANG_EXPR(rang::fg::blue) << "README.md"
+            << RANG_EXPR(rang::fg::green) << " file for further instructions.";
 }
 
 } // namespace cpi

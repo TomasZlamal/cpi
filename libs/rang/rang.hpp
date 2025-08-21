@@ -1,3 +1,8 @@
+/*
+ * Code taken from: https://github.com/agauniyal/rang/tree/master
+ * All credit goes to contributors of the git repository.
+ */
+
 #ifndef RANG_DOT_HPP
 #define RANG_DOT_HPP
 
