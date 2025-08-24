@@ -9,17 +9,23 @@ int main(int argc, char **argv) {
     std::cout << RANG_EXPR(rang::fg::red) << "At least 1 argument required.\n";
     return 1;
   }
-  std::map<std::string, cpi::ToolChoice> m{
-      {"setup", cpi::ToolChoice::SETUP},
-      {"initcpi", cpi::ToolChoice::INITCPI},
-      {"cclass", cpi::ToolChoice::CCLASS},
-      {"csplit", cpi::ToolChoice::CSPLIT}};
+
   std::string user_choice = argv[1];
-  auto choice = cpi::ToolChoice::NONE;
-  if (auto search = m.find(user_choice); search != m.end()) {
-    choice = m[user_choice];
-  }
-  switch (choice) {
+  cpi::ToolChoice tool_choice = [&user_choice] {
+    std::map<std::string, cpi::ToolChoice> tool_mapping{
+        {"setup", cpi::ToolChoice::SETUP},
+        {"initcpi", cpi::ToolChoice::INITCPI},
+        {"cclass", cpi::ToolChoice::CCLASS},
+        {"csplit", cpi::ToolChoice::CSPLIT}};
+
+    if (auto search = tool_mapping.find(user_choice);
+        search != tool_mapping.end()) {
+      return tool_mapping[user_choice];
+    }
+    return cpi::ToolChoice::NONE;
+  }();
+
+  switch (tool_choice) {
   case cpi::ToolChoice::SETUP: {
     cpi::setup_cpp_project();
   } break;

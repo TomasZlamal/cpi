@@ -2,3 +2,4 @@ build/
 tmux.tmx
 CMakeUserPresets.json
 vcpkg_installed/
+cpi/
