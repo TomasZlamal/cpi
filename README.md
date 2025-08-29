@@ -35,7 +35,7 @@ Creates an initialization UI for the user. This allows you to quickly setup a pr
 Initializes all cpi config files.
 It is heavily recommended to run this when setting up cpi in your project.
 
-### loc (in progress)
+### loc (working)
 `cpi loc`
 Get the Lines of Code count for your project (based on impl and header dir values in cpi.toml).
 
