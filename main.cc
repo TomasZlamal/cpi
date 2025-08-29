@@ -1,6 +1,8 @@
 #include "src/cclass.h"
+#include "src/create_functions.h"
 #include "src/csplit.h"
 #include "src/initcpi.h"
+#include "src/loc_tool.h"
 #include "src/setup.h"
 #include "src/util.h"
 
@@ -16,7 +18,8 @@ int main(int argc, char **argv) {
         {"setup", cpi::ToolChoice::SETUP},
         {"initcpi", cpi::ToolChoice::INITCPI},
         {"cclass", cpi::ToolChoice::CCLASS},
-        {"csplit", cpi::ToolChoice::CSPLIT}};
+        {"csplit", cpi::ToolChoice::CSPLIT},
+        {"loc", cpi::ToolChoice::LOC}};
 
     if (auto search = tool_mapping.find(user_choice);
         search != tool_mapping.end()) {
@@ -33,61 +36,28 @@ int main(int argc, char **argv) {
     cpi::init_cpi();
   } break;
   case cpi::ToolChoice::CSPLIT: {
-    if (argc < 3) {
-      std::cout << RANG_EXPR(rang::fg::red)
-                << "'csplit' needs atleast 1 argument.\n";
-      return 1;
-    }
-
-    using namespace std::literals;
-    try {
-      auto config = toml::parse_file("cpi/cpi.toml");
-      int ccfailed = cpi::csplit(argv[2], config);
-      if (ccfailed) {
-        std::cout << RANG_EXPR(rang::fg::red) << "'csplit' failed.\n";
-        return 1;
-      }
-
-      std::cout << RANG_EXPR(rang::fg::green)
-                << "'csplit' executed succesfully\n"
-                << RANG_EXPR(rang::fg::reset);
-
-    } catch (const toml::parse_error &err) {
-
-      std::cout << RANG_EXPR(rang::fg::red)
-                << "Something went wrong with reading your cpi.toml file.\n";
-      return 1;
-    }
-
+    cpi::split_fn_execute(cpi::csplit, argc, argv, "csplit");
   } break;
   case cpi::ToolChoice::CCLASS: {
-
-    if (argc < 3) {
-      std::cout << RANG_EXPR(rang::fg::red)
-                << "'cclass' needs atleast 1 argument.\n";
-      return 1;
-    }
-
-    using namespace std::literals;
+    cpi::split_fn_execute(cpi::cclass, argc, argv, "cclass");
+  } break;
+  case cpi::ToolChoice::LOC: {
+    // BIG PROBLEM WITH THIS TOOL: WONT BE ABLE TO HANDLE OVERLAPS (between
+    // directories, since the search is recursive). It does handle it if the
+    // directories are exactly the same though.
     try {
+
       auto config = toml::parse_file("cpi/cpi.toml");
-      int ccfailed = cpi::cclass(argv[2], config);
-      if (ccfailed) {
-        std::cout << RANG_EXPR(rang::fg::red) << "'cclass' failed.\n";
-        return 1;
-      }
+      std::cout << RANG_EXPR(rang::style::reset)
+                << "Lines of code count: " << RANG_EXPR(rang::style::bold)
+                << cpi::get_project_loc(config);
 
-      std::cout << RANG_EXPR(rang::fg::green)
-                << "'cclass' executed succesfully\n"
-                << RANG_EXPR(rang::fg::reset);
-
-    } catch (const toml::parse_error &err) {
-
-      std::cout << RANG_EXPR(rang::fg::red)
-                << "Something went wrong with reading your cpi.toml file.\n";
-      return 1;
     }
 
+    catch (const toml::parse_error &err) {
+      std::cout << "Could not find toml file." << std::endl;
+      return 1;
+    }
   } break;
   case cpi::ToolChoice::NONE:
 

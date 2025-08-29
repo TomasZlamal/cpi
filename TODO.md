@@ -1,5 +1,4 @@
-- [x] Outer tool: "cclass CLASSNAME": create an empty class with impl file in toml.impl and header in toml.header, with an optional namespace toml.namespace
-- [ ] tool: "split FILENAME": creates two files, an implementation file and a header file, according to the .toml rules and the given filename.
 - [ ] tool: "loc": list all lines of code in impl_dir, header_dir and root ("/")
 - [ ] tool: "hw": creates a hello world file in the current directory. Extension according to cpi.toml
 - [ ] tool: "todos": Lists out all TODO: statements, with all of the file locations, lines and contents.
+- [ ] tool: add scripting functionality to c-class functions (do something after creating the class, giving the name of the file as the values (e.g. header.h, src.cc)); add to .toml; maybe split up into one after impl, and one after header? or maybe save inside of .temp_cpi and delete after
